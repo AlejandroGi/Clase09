@@ -5,7 +5,7 @@ var btnSub = document.getElementById('btnSub');
 btnSub.addEventListener('click',openForm);
 
 function openForm(){
-    var allForm= allForm.getElementById('form');
+    var allForm= document.getElementById('form');
     allForm.style.display="flex";
 }
 
@@ -13,7 +13,7 @@ var btnClose = document.getElementById('btnClose');
 btnClose.addEventListener('click',closeForm);
 
 function closeForm(){
-    var allForm= allForm.getElementById('form');
+    var allForm= document.getElementById('form');
     allForm.style.display="none";
 }
 
@@ -242,9 +242,12 @@ var city = document.getElementById('city');
 city.addEventListener('blur',validateCity);
 city.addEventListener('focus',clearInput);
 
+
+
 function validateCity(){
+    var errorMsg = "";
     if (city.value.length < 3){
-        var errorMsg= "La ciudad debe contar con 3 o mas caracteres. ";
+        errorMsg= "La ciudad debe contar con 3 o mas caracteres. ";
         document.getElementById('error-city').innerText = errorMsg;
     }
     allMsgError = allMsgError + errorMsg;
@@ -257,7 +260,9 @@ var postalCode = document.getElementById('postalCode');
 postalCode.addEventListener('blur',validatePostalCode);
 postalCode.addEventListener('focus',clearInput);
 
+
 function validatePostalCode(){
+    var errorMsg = "";
     if (postalCode.value.length < 3){
         var errorMsg= "El codigo postla debe contar con 3 o mas caracteres. ";
         document.getElementById('error-postalCode').innerText = errorMsg;
@@ -271,6 +276,7 @@ function validatePostalCode(){
 var passportCard = document.getElementById('passportCard');
 passportCard.addEventListener('blur',validatePassportCard);
 passportCard.addEventListener('focus',clearInput);
+
 
 function validatePassportCard(){
 
@@ -291,20 +297,15 @@ function validatePassportCard(){
 var btnSend = document.getElementById('btnSend');
 btnSend.addEventListener('click', checkInputs)
 
-console.log(nameSurname.value);
-console.log(allMsgError)
-console.log(allMsgError.value)
-console.log(allMsgError)
+/*var allMsgError = document.getElementsByClassName('error');*/
 
-var allMsgError = document.getElementsByClassName('error');
-
-console.log(allMsgError.value)
-console.log(allMsgError)
+console.log(nameSurname);
 
 function checkInputs(){
     if (allMsgError === ""){
-        alert(nameSurname.value + email.value + password.value + age.value + cellPhoneNumber.value +address.value + city.value + postalCode.value + passportCard.value);
+    alert(nameSurname.value + email.value + password.value + age.value + cellPhoneNumber.value +address.value + city.value + postalCode.value + passportCard.value);
     }else{
-        alert(allMsgError.value);
-    }
+        alert(allMsgError);
+    } 
+        allMsgError = "";
 }
