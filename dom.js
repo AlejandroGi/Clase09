@@ -16,21 +16,21 @@ function closeForm(){
     var allForm= document.getElementById('form');
     allForm.style.display="none";
     
-    var allMsgError = "";
-    var allInputs = [];
+    var allMsgError;
+    var allInputs;
 
     allMsgError=document.getElementsByClassName('error');
 
     for (x = 0; x < allMsgError.length; x++) {
-        allMsgError[x].innerText = ''
+        allMsgError[x].innerText = '';
     }
 
     allInputs=document.querySelectorAll('form input');
 
     for (x = 0; x < allInputs.length; x++) {
-        allInputs[x].value = ''
+        allInputs[x].value = '';
     }
-    
+
 }
 
 
@@ -47,7 +47,7 @@ function changeColorByMove(e){
 
 /*----------------------------CLEAR INPUT-----------------------------*/
 
-function clearInput(){
+function clearWarningInput(){
     this.nextElementSibling.innerText = "";
 }
 
@@ -57,7 +57,7 @@ function clearInput(){
 var nameSurname = document.getElementById('nameSurname');
 nameSurname.addEventListener('keyup',namePlus);
 nameSurname.addEventListener('blur',validateNameSurname);
-nameSurname.addEventListener('focus',clearInput);
+nameSurname.addEventListener('focus',clearWarningInput);
 
 /*-----------------CHANGE HELLO-----------------*/
 function namePlus(){
@@ -110,7 +110,7 @@ var errorMsg = "";
 
 var email = document.getElementById('email');
 email.addEventListener('blur',validateEmail);
-email.addEventListener('focus',clearInput);
+email.addEventListener('focus',clearWarningInput);
 
 function validateEmail(){
 
@@ -130,7 +130,7 @@ function validateEmail(){
 
 var password = document.getElementById('password');
 password.addEventListener('blur', validatePassword);
-password.addEventListener('focus',clearInput);
+password.addEventListener('focus',clearWarningInput);
 
 function validatePassword(){
 
@@ -159,7 +159,7 @@ function validatePassword(){
 
 var age = document.getElementById('age');
 age.addEventListener('blur', validateAge);
-age.addEventListener('focus',clearInput);
+age.addEventListener('focus',clearWarningInput);
 
 function validateAge(){
 
@@ -180,7 +180,7 @@ function validateAge(){
 
 var cellPhoneNumber = document.getElementById('cellPhoneNumber');
 cellPhoneNumber.addEventListener('blur',validatecellPhoneNumber);
-cellPhoneNumber.addEventListener('focus',clearInput);
+cellPhoneNumber.addEventListener('focus',clearWarningInput);
 
 function validatecellPhoneNumber(){
 
@@ -207,7 +207,7 @@ function validatecellPhoneNumber(){
 
 var address = document.getElementById('address');
 address.addEventListener('blur',validateAddress);
-address.addEventListener('focus',clearInput);
+address.addEventListener('focus',clearWarningInput);
 
 function validateAddress(){
     var acumChar=0;
@@ -256,7 +256,7 @@ function validateAddress(){
 
 var city = document.getElementById('city');
 city.addEventListener('blur',validateCity);
-city.addEventListener('focus',clearInput);
+city.addEventListener('focus',clearWarningInput);
 
 
 
@@ -273,7 +273,7 @@ function validateCity(){
 
 var postalCode = document.getElementById('postalCode');
 postalCode.addEventListener('blur',validatePostalCode);
-postalCode.addEventListener('focus',clearInput);
+postalCode.addEventListener('focus',clearWarningInput);
 
 
 function validatePostalCode(){
@@ -289,7 +289,7 @@ function validatePostalCode(){
 
 var passportCard = document.getElementById('passportCard');
 passportCard.addEventListener('blur',validatePassportCard);
-passportCard.addEventListener('focus',clearInput);
+passportCard.addEventListener('focus',clearWarningInput);
 
 
 function validatePassportCard(){
