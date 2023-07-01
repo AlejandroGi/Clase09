@@ -32,8 +32,9 @@ function changeColorByMove(e){
 /*----------------------------CLEAR INPUT-----------------------------*/
 
 function clearInput(){
-
+    this.nextElementSibling.innerText = "";
 }
+
 
 /*----------------------------NAME SURNAME-----------------------------*/
 
@@ -52,7 +53,8 @@ function namePlus(){
 function validateNameSurname(){
 var acum=0;
 var acumEspacios=0;    
-var errorMsg ="";
+var errorMsg = "";
+
 
     for (x=0; x <= nameSurname.value.length; x++){
         if(nameSurname.value.charAt(x).toLowerCase().search(/[a-z]/) >= 0){ 
@@ -65,19 +67,25 @@ var errorMsg ="";
         }
     }
     if ((acum+acumEspacios) != nameSurname.value.length){
-        errorMsg= "El Nombre y Apellido no puede contener numeros o caracteres especiales. ";
+        errorMsg= errorMsg+ "El Nombre y Apellido no puede contener numeros o caracteres especiales.\n";
+        
     }else {
         if(nameSurname.value.length < 6){
-            errorMsg=errorMsg+ "El Nombre y Apellido tiene menos de 6 caracteres alfabeticos. ";}
+            errorMsg= errorMsg+ "El Nombre y Apellido tiene menos de 6 caracteres alfabeticos.\n";
+        }
+        
         if (acumEspacios != 1){
-            if (acumEspacios < 1)
-            errorMsg=errorMsg+ "El Nombre y Apellido no cuenta con un espacio intermedio. ";
-            if (acumEspacios > 1)
-            errorMsg=errorMsg+ "El Nombre y Apellido cuenta con mas de un espacio intermedio. ";
+            if (acumEspacios < 1){
+                errorMsg= errorMsg+ "El Nombre y Apellido no cuenta con un espacio intermedio.\n";
+            }
+            if (acumEspacios > 1){
+                errorMsg= errorMsg+ "El Nombre y Apellido cuenta con mas de un espacio intermedio.\n";
+            }
         }
     }
-    document.getElementById('error-nameSurname').innerHTML = errorMsg;
-    allMsgError = allMsgError + errorMsg;
+    
+    document.getElementById('error-nameSurname').innerText = errorMsg;
+    //innerText no respeta los salto de linea?
 }
 
 
@@ -93,13 +101,12 @@ function validateEmail(){
     var errorMsg="";
 
     if(email.value.search(/[@]/) < 0) { 
-        errorMsg = errorMsg + " El formato de email debe contener'@'. ";
+        errorMsg = errorMsg + " El formato de email debe contener'@'.\n";
     } 
     if(email.value.search(/[.]/) < 0) { 
-        errorMsg = errorMsg + " El formato de email debe contener'.'. ";
+        errorMsg = errorMsg + " El formato de email debe contener'.'.\n";
     } 
     document.getElementById('error-email').innerText = errorMsg;
-    allMsgError = allMsgError + errorMsg;
 }
 
 
@@ -114,22 +121,21 @@ function validatePassword(){
     var errorMsg = "";
 
     if(password.value.length < 8) { 
-        errorMsg = errorMsg + "La contraseña debe ser de 8 o mas caracteres alfanumericos. ";
+        errorMsg = errorMsg + "La contraseña debe ser de 8 o mas caracteres alfanumericos.\n";
         document.getElementById('error-password').innerText = errorMsg;
         return;
     } 
 
     if(password.value.search(/[a-z]/) < 0) { 
-        errorMsg = errorMsg + " La contraseña debe contener por letras MINUSCULAS. ";
+        errorMsg = errorMsg + " La contraseña debe contener por letras MINUSCULAS.\n";
     }
     if(password.value.search(/[A-Z]/) < 0) { 
-        errorMsg = errorMsg + " La contraseña debe contener letras MAYSUCULAS. ";
+        errorMsg = errorMsg + " La contraseña debe contener letras MAYSUCULAS.\n";
     }
     if(password.value.search(/[0-9]/) < 0) { 
-        errorMsg = errorMsg+ " La contraseña debe contener NUMEROS. ";
+        errorMsg = errorMsg+ " La contraseña debe contener NUMEROS.\n";
     } 
     document.getElementById('error-password').innerText = errorMsg;
-    allMsgError = allMsgError + errorMsg;
 }
 
 
@@ -144,14 +150,13 @@ function validateAge(){
     var errorMsg="";
 
     if(!Number.isInteger(Number(age.value))){
-        errorMsg="La edad debe ser numerica y no tener decimales. ";
+        errorMsg="La edad debe ser numerica y no tener decimales.\n";
     }else {
         if (age.value < 18){
-            errorMsg = "La edad debe ser mayor o igual a 18. ";
+            errorMsg = "La edad debe ser mayor o igual a 18.\n";
         }
     }
     document.getElementById('error-age').innerText = errorMsg;
-    allMsgError = allMsgError + errorMsg;
 }
 
 
@@ -166,22 +171,19 @@ function validatecellPhoneNumber(){
     var errorMsg = "";
     
     if(!Number.isInteger(Number(cellPhoneNumber.value))){
-        errorMsg="El telefono debe ser numerico. ";
+        errorMsg="El telefono debe ser numerico.\n";
         return;
     }else{
         if (cellPhoneNumber.value.length < 7){
-        errorMsg= errorMsg+ "El numero de telefono debe tener al menos 7 digitos. ";
+        errorMsg= errorMsg+ "El numero de telefono debe tener al menos 7 digitos.\n";
         }
     }
 
-  /*  if (cellPhoneNumber.value.search(/[\s\s()-_]/) >= 0){
-        errorMsg= errorMsg+ "El numero de telefono no puede contener espacios, guiones y/o parentesis. ";
-    }*/
-
     document.getElementById('error-cellPhoneNumber').innerText = errorMsg;
-    allMsgError = allMsgError + errorMsg;
     /*Por si algun dia necesito filtrar otras cosas  \!\@\#\$\%\^\&\*\)\(+\=\._-    ||    /[-!$%^&*()_+|~=`{}\[\]:\/;<>?,.@#]/  */
-
+    /*  if (cellPhoneNumber.value.search(/[\s\s()-_]/) >= 0){
+            errorMsg= errorMsg+ "El numero de telefono no puede contener espacios, guiones y/o parentesis. ";
+        }*/
 }
 
 
@@ -199,7 +201,7 @@ function validateAddress(){
     var errorMsg = "";
 
     if (address.value.length < 5){
-        errorMsg= errorMsg+ "La direccion debe tener al menos 5 caracteres. ";
+        errorMsg= errorMsg+ "La direccion debe tener al menos 5 caracteres.\n";
     }
 
     for (x=0; x <= address.value.length; x++){
@@ -217,22 +219,20 @@ function validateAddress(){
     
 
     if (acumChar === 0){
-        errorMsg= errorMsg+ "La direccion debe contar con letras. ";
+        errorMsg= errorMsg+ "La direccion debe contar con letras.\n";
     }
     if (acumNum === 0){
-        errorMsg= errorMsg+ "La direccion debe contar con numeros. ";
+        errorMsg= errorMsg+ "La direccion debe contar con numeros.\n";
     }
     if (acumEsp != 1){
-        errorMsg= errorMsg+ "La direccion debe contar con un espacio. ";
+        errorMsg= errorMsg+ "La direccion debe contar con un espacio.\n";
     }
 
     if ((acumChar+acumNum+acumEsp) != address.value.length){
-        errorMsg= errorMsg+ "La direccion no puede contener caracteres especiales. ";
+        errorMsg= errorMsg+ "La direccion no puede contener caracteres especiales.\n";
     }
     document.getElementById('error-address').innerText = errorMsg;
-    
-    /* Si llego con el tiempo lo mejoro*/
-    allMsgError = allMsgError + errorMsg;
+
 }
 
 
@@ -247,10 +247,9 @@ city.addEventListener('focus',clearInput);
 function validateCity(){
     var errorMsg = "";
     if (city.value.length < 3){
-        errorMsg= "La ciudad debe contar con 3 o mas caracteres. ";
+        errorMsg= "La ciudad debe contar con 3 o mas caracteres.\n";
         document.getElementById('error-city').innerText = errorMsg;
     }
-    allMsgError = allMsgError + errorMsg;
 }
 
 
@@ -264,10 +263,9 @@ postalCode.addEventListener('focus',clearInput);
 function validatePostalCode(){
     var errorMsg = "";
     if (postalCode.value.length < 3){
-        var errorMsg= "El codigo postla debe contar con 3 o mas caracteres. ";
+        var errorMsg= "El codigo postla debe contar con 3 o mas caracteres.\n";
         document.getElementById('error-postalCode').innerText = errorMsg;
     }
-    allMsgError = allMsgError + errorMsg;
 }
 
 
@@ -283,11 +281,11 @@ function validatePassportCard(){
     var errorMsg = "";
 
     if(!Number.isInteger(Number(passportCard.value))){
-        errorMsg="El DNI debe ser numerico y no tener decimales. ";
+        errorMsg="El DNI debe ser numerico y no tener decimales.\n";
     }else if(passportCard.value.length < 7 || passportCard.value.length > 8){
-        errorMsg= "El DNI debe contener 7 u 8 digitios.";
+        errorMsg= "El DNI debe contener 7 u 8 digitios.\n";
     }
-    allMsgError = allMsgError + errorMsg;
+    
     document.getElementById('error-passportCard').innerText = errorMsg;
 }
 
@@ -297,15 +295,46 @@ function validatePassportCard(){
 var btnSend = document.getElementById('btnSend');
 btnSend.addEventListener('click', checkInputs)
 
-/*var allMsgError = document.getElementsByClassName('error');*/
-
-console.log(nameSurname);
-
 function checkInputs(){
-    if (allMsgError === ""){
-    alert(nameSurname.value + email.value + password.value + age.value + cellPhoneNumber.value +address.value + city.value + postalCode.value + passportCard.value);
+var flagErrorEmpty = true;
+var flagErrorInputEmpty=true;
+var allMsgErrorString =[];
+var allInputs = [];
+
+    allMsgError=document.getElementsByClassName('error');
+
+    for (x = 0; x < allMsgError.length; x++) {
+        if (allMsgError[x].innerText != '') {
+            flagErrorEmpty = false; //Si encuentra un error -> Falso
+        }
+    }
+
+    allInputs=document.querySelectorAll('form input');
+
+    for (x = 0; x < allInputs.length; x++) {
+        if (allInputs[x].value === '') { 
+            flagErrorInputEmpty = false; //Si encuentra un campo vacio ->Falso
+        }
+    }
+    
+    if (flagErrorEmpty && flagErrorInputEmpty){
+        var response = confirm('Verifique sus datos:'+'\nNombre: '+nameSurname.value +'\nEmail: '+email.value +'\nContraseña: '+password.value+ '\nEdad: '+age.value+'\nTelefono: '+cellPhoneNumber.value+'\nDireccion: '+address.value+'\nCiudad: '+city.value+'\nCodigo Postal: '+postalCode.value+'\nDNI: '+passportCard.value);
+        if (response) {
+            alert('Usuario creado con exito');
+        }else{
+            alert('Subscipcion cancelada con exito');
+        }
+
     }else{
-        alert(allMsgError);
+        if (flagErrorEmpty){
+            alert('Debe completar todos los campos');
+        }else{
+            for(x = 0; x < allMsgError.length; x++){
+                allMsgErrorString=allMsgErrorString+ allMsgError[x].innerText;
+            }
+            alert(allMsgErrorString);
+        }
     } 
-        allMsgError = "";
+    
+    allMsgErrorString= "";
 }
