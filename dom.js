@@ -1,4 +1,4 @@
-var allMsgError = "";
+
 
 /*----------------------------FORMS-----------------------------*/
 var btnSub = document.getElementById('btnSub');
@@ -15,6 +15,22 @@ btnClose.addEventListener('click',closeForm);
 function closeForm(){
     var allForm= document.getElementById('form');
     allForm.style.display="none";
+    
+    var allMsgError = "";
+    var allInputs = [];
+
+    allMsgError=document.getElementsByClassName('error');
+
+    for (x = 0; x < allMsgError.length; x++) {
+        allMsgError[x].innerText = ''
+    }
+
+    allInputs=document.querySelectorAll('form input');
+
+    for (x = 0; x < allInputs.length; x++) {
+        allInputs[x].value = ''
+    }
+    
 }
 
 
